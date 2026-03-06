@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clash Royale | Школа чемпионов</title>
-    <!-- Font Awesome 6 (бесплатно) -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ===== СТИЛИ (ПОЛНОСТЬЮ БЕЗ ИЗМЕНЕНИЙ) ===== */
         * {
             margin: 0;
             padding: 0;
@@ -288,7 +287,7 @@
             transform: scale(1.05);
         }
 
-        /* ===== ВИДЕО С YOUTUBE ===== */
+
         .video-wrapper {
             display: flex;
             justify-content: center;
@@ -309,7 +308,7 @@
             border: none;
         }
 
-        /* Магазин гемов */
+      
         .gems-shop {
             background: #0f2538;
             padding: 50px 0;
@@ -568,7 +567,7 @@
     </div>
 </section>
 
-<!-- Каталог карт -->
+
 <section id="learn" class="container">
     <h2 class="section-title"><i class="fas fa-book-open"></i> Каталог карт (обучение)</h2>
     <div class="cards-grid">
@@ -608,7 +607,7 @@
 
 
 
-<!-- Магазин гемов (игровая валюта) -->
+
 <section id="gems" class="gems-shop">
     <div class="container">
         <h2 class="section-title" style="color:#ffd966;">💎 Игровая валюта — Гемы</h2>
@@ -644,7 +643,7 @@
     </div>
 </section>
 
-<!-- Мини-игра -->
+
 <section id="minigame" class="minigame">
     <div class="container">
         <h2 class="section-title" style="margin-top:0;">🎲 Открой сундук</h2>
@@ -655,7 +654,7 @@
     </div>
 </section>
 
-<!-- Футер (только поддержка + российский номер) -->
+
 <footer>
     <div class="container">
         <div class="footer-content">
@@ -685,7 +684,7 @@
 <div id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'});">⬆️</div>
 
 <script>
-    // Функция для буста: запрос ID и подтверждение
+    
     function requestBoost(coachName) {
         let playerId = prompt(`Введите ваш ID игрока (например, #ABC123) для тренера ${coachName}:`);
         if (playerId && playerId.trim() !== '') {
@@ -695,7 +694,7 @@
         }
     }
 
-    // Функция покупки гемов: реквизиты + ID + ожидание
+    
     function buyGems(amount, price) {
         let playerId = prompt(`Введите ваш ID игрока для получения ${amount}:`);
         if (!playerId || playerId.trim() === '') {
@@ -712,7 +711,7 @@
         alert(`✅ Оплата ${amount} на сумму ${price}₽ выполнена.\nОжидайте, гемы скоро поступят на аккаунт ${playerId}.`);
     }
 
-    // Мини-игра
+   
     function openChest() {
         const chest = document.getElementById('chest');
         const icon = document.getElementById('chestIcon');
@@ -728,7 +727,7 @@
         }, 800);
     }
 
-    // adjustPadding (для contest-text)
+   
     function adjustPadding() {
         const containerWidth = 1200;
         const screenWidth = window.innerWidth;
@@ -740,7 +739,7 @@
     window.addEventListener('resize', adjustPadding);
 </script>
 
-<!-- Блок турнира (не мешает) -->
+
 <section class="contest-promo">
     <div class="container" style="display: contents;">
         <div class="contest-text" style="padding-left: calc((100vw - 1200px)/2 + 25px);">
@@ -748,4 +747,5 @@
             <p>Примите участие в ежемесячном турнире. Победители получат эксклюзивные эмодзи и сундуки с легендарками!</p>
             <a href="https://supercell.com/en/games/clashroyale/esports/" target="_blank" class="btn" style="padding: 12px 35px; margin-top: 20px;">Зарегистрироваться</a>
         </div>
+
         <div class="
