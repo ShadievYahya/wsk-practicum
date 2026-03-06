@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash Royale | Школа чемпионов</title>
+    <!-- Font Awesome 6 (бесплатно) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== СТИЛИ (ПОЛНОСТЬЮ БЕЗ ИЗМЕНЕНИЙ) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: #0b1a2a;
+            color: #f0e9d8;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .image-placeholder {
+            background: #2c404f;
+            background-image: radial-gradient(circle at 30% 30%, #aa8c5f 1px, transparent 1px), 
+                              radial-gradient(circle at 70% 70%, #7a6a50 1px, transparent 1px);
+            background-size: 30px 30px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 2px solid #c9a455;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+        }
+
+        .image-placeholder::after {
+            content: "👑";
+            font-size: 40px;
+            color: #f3d27e;
+            text-shadow: 2px 2px 0 #6b4f2a;
+            position: absolute;
+            transform: rotate(-5deg);
+            opacity: 0.5;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 2px solid #c9a455;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #f3d27e, #dBB42c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0 #3a2c1b;
+            cursor: pointer;
+        }
+
+        .nav-links a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: #efdbc1;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 8px 12px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            border-color: #c9a455;
+            background: rgba(201, 164, 85, 0.15);
+            color: #ffd966;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            min-height: 550px;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M20,20 L30,5 L40,20 L55,20 L45,32 L50,48 L35,40 L20,48 L25,32 L10,20 Z" fill="%23c9a455"/></svg>');
+        }
+
+        .hero-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: rgba(11, 26, 42, 0.7);
+            border-radius: 30px;
+            margin: 30px 0;
+            border: 2px solid #c9a455;
+            min-height: 400px;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 800;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fae37f, #dbb42c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px #ffae00;
+            line-height: 1.2;
+            padding: 20px;
+        }
+
+        .features {
+            padding: 70px 0;
+        }
+
+        .features h2 {
+            font-size: 44px;
+            margin-bottom: 40px;
+            border-left: 10px solid #c9a455;
+            padding-left: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ffe4b5;
+        }
+
+        .grid-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .feature-item {
+            background: rgba(44, 64, 79, 0.7);
+            padding: 30px;
+            border-radius: 30px;
+            border: 1px solid #9e8b60;
+            backdrop-filter: blur(3px);
+            transition: 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: scale(1.02);
+            border-color: #f5c542;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+
+        .feature-item h3 {
+            font-size: 26px;
+            color: #fbd26a;
+            margin-bottom: 15px;
+        }
+
+        .feature-item p {
+            color: #cfc3b0;
+            font-size: 16px;
+        }
+
+        .contest-promo {
+            padding: 60px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            background: linear-gradient(90deg, #0f2538, #1d3347);
+            border-top: 3px solid #b3904a;
+            border-bottom: 3px solid #b3904a;
+            gap: 30px;
+        }
+
+        .contest-text {
+            padding-right: 20px;
+        }
+
+        .contest-text h3 {
+            font-size: 36px;
+            color: #fad675;
+            margin-bottom: 25px;
+        }
+
+        .contest-text p {
+            font-size: 20px;
+            color: #cdc2af;
+        }
+
+        .contest-img {
+            height: 320px;
+            width: 100%;
+            border-radius: 40px;
+            border: 3px solid #c9a455;
+        }
+
+        .section-title {
+            font-size: 42px;
+            color: #ffd966;
+            text-align: center;
+            margin: 60px 0 40px;
+            text-transform: uppercase;
+            border-bottom: 3px solid #c9a455;
+            padding-bottom: 15px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .card-item {
+            background: #1e3347;
+            border: 2px solid #b49347;
+            border-radius: 30px;
+            padding: 20px 10px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .card-item:hover {
+            transform: translateY(-8px);
+            border-color: #fad564;
+            box-shadow: 0 0 30px #ffd966;
+        }
+        .card-item i {
+            font-size: 48px;
+            color: #fad564;
+            margin-bottom: 10px;
+        }
+        .card-item h4 {
+            font-size: 22px;
+            color: #f3d27e;
+        }
+
+        .coaches-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 50px 0;
+        }
+        .coach-card {
+            background: #173247;
+            border-radius: 40px;
+            padding: 25px;
+            border: 1px solid #9e8b60;
+            text-align: center;
+        }
+        .coach-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #c9a455;
+            margin-bottom: 15px;
+            background: #2f4257;
+            object-fit: cover;
+        }
+        .coach-card h3 { color: #fad564; font-size: 26px; }
+        .coach-card p { color: #bc9b6b; }
+        .boost-btn {
+            background: #c9a455;
+            border: none;
+            color: #0f1e2c;
+            padding: 12px 30px;
+            border-radius: 40px;
+            font-weight: bold;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+        .boost-btn:hover {
+            background: #e5b95c;
+            transform: scale(1.05);
+        }
+
+        /* ===== ВИДЕО С YOUTUBE ===== */
+        .video-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0 70px;
+        }
+        .video-container {
+            width: 800px;
+            max-width: 100%;
+            aspect-ratio: 16/9;
+            border: 4px solid #c9a455;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(201,164,85,0.5);
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Магазин гемов */
+        .gems-shop {
+            background: #0f2538;
+            padding: 50px 0;
+            border-top: 3px solid #b3904a;
+            border-bottom: 3px solid #b3904a;
+        }
+        .gems-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .gem-item {
+            background: linear-gradient(145deg, #1e3a4a, #12303f);
+            border-radius: 40px;
+            padding: 30px 20px;
+            text-align: center;
+            border: 3px solid #eba031;
+            box-shadow: 0 10px 0 #8b5e2c, 0 0 30px rgba(255,215,0,0.3);
+            position: relative;
+        }
+        .gem-item::before {
+            content: "💎";
+            font-size: 30px;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0b1a2a;
+            padding: 0 15px;
+            color: #5ad0f0;
+            text-shadow: 0 0 10px cyan;
+        }
+        .gem-icon {
+            font-size: 70px;
+            color: #3cc5d8;
+            text-shadow: 0 0 20px #00ffff, 0 0 40px #0066ff;
+            margin: 15px 0 10px;
+        }
+        .gem-price {
+            font-size: 32px;
+            color: #fad564;
+            font-weight: bold;
+            text-shadow: 2px 2px 0 #8b5e2c;
+            margin: 10px 0;
+        }
+        .gem-amount {
+            font-size: 22px;
+            color: #aad0f0;
+        }
+        .buy-btn {
+            background: #eba031;
+            color: #0f1e2c;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 20px;
+            border: 2px solid #ffcf7a;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 0 #9e671e;
+            margin-top: 15px;
+        }
+        .buy-btn:hover {
+            background: #f5b845;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 0 #9e671e;
+        }
+
+        .minigame {
+            background: #122b3f;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .chest {
+            width: 200px;
+            height: 200px;
+            background: #8b6f42;
+            border-radius: 40px 40px 20px 20px;
+            margin: 30px auto;
+            position: relative;
+            border: 5px solid #5e4a2b;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 90px;
+            color: #f3d27e;
+            box-shadow: 0 20px 0 #4f3e25;
+        }
+        .chest:active {
+            transform: translateY(10px);
+            box-shadow: 0 10px 0 #4f3e25;
+        }
+        .chest.open {
+            background: #aa8c5f;
+            box-shadow: 0 10px 0 #5e4a2b;
+            transform: translateY(10px);
+        }
+        .prize-info {
+            font-size: 32px;
+            color: #fad564;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: #0a1825;
+            padding: 60px 0 25px;
+            border-top: 5px solid #b49347;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            border-bottom: 2px solid #5f5a4c;
+            padding-bottom: 40px;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        .footer-section h4 {
+            color: #fad564;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .footer-section p, .footer-section a {
+            color: #bfa77a;
+            font-size: 20px;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .footer-section a:hover {
+            color: #fad564;
+        }
+        .russian-phone {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffd966;
+            background: #1f3348;
+            padding: 15px 25px;
+            border-radius: 60px;
+            display: inline-block;
+            border: 2px solid #c9a455;
+        }
+
+        .social-icons {
+            margin: 0;
+            display: flex;
+            gap: 15px;
+        }
+        .circle-icon {
+            width: 55px;
+            height: 55px;
+            border: 2px solid #c9a455;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #eac671;
+            background: #1b2c3b;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .circle-icon:hover {
+            background: #c9a455;
+            color: #0b1a2a;
+            transform: scale(1.2);
+        }
+
+        .copy {
+            font-size: 14px;
+            color: #937b50;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #scrollTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #c9a455;
+            color: #0f1e2c;
+            border: 2px solid #fad564;
+            font-size: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        @media (max-width: 800px) {
+            .grid-features, .contest-promo, .gallery-grid, .coaches-grid, .gems-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 38px; }
+        }
+        .btn {
+            background: #c9a455;
+            color: #0f1e2c;
+            padding: 15px 45px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 20px;
+            border: 2px solid #fad564;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: #e5b95c;
+            box-shadow: 0 0 30px #ffd966;
+        }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <div class="container">
+        <nav>
+            <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'});"><i class="fas fa-crown"></i> Clash<span style="color:#fad564;">Royale</span></div>
+            <div class="nav-links">
+                <a onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'});"><i class="fas fa-shield-halded"></i> Арена</a>
+                <a onclick="document.getElementById('learn').scrollIntoView({behavior:'smooth'});"><i class="fas fa-graduation-cap"></i> Обучение</a>
+                <a onclick="document.getElementById('coaches').scrollIntoView({behavior:'smooth'});"><i class="fas fa-chalkboard-teacher"></i> Тренеры</a>
+                <a onclick="document.getElementById('gems').scrollIntoView({behavior:'smooth'});"><i class="fas fa-gem"></i> Гемы</a>
+                <a onclick="document.getElementById('minigame').scrollIntoView({behavior:'smooth'});"><i class="fas fa-gamepad"></i> Игра</a>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="image-placeholder hero-content">
+            <h1>Стань легендой Clash Royale<br>с нашей школой</h1>
+        </div>
+    </div>
+</header>
+
+<section id="features" class="features">
+    <div class="container">
+        <h2><i class="fas fa-bolt"></i> Игровые механики <i class="fas fa-bolt"></i></h2>
+        <div class="grid-features">
+            <div class="feature-item"><h3><i class="fas fa-tower"></i> Защита башен</h3><p>Стратегически размещайте войска и заклинания, чтобы уничтожить королевские башни противника.</p></div>
+            <div class="feature-item"><h3><i class="fas fa-hat-wizard"></i> Уникальные карты</h3><p>Коллекционируйте десятки карт: рыцари, драконы, ведьмы и легендарные чемпионы.</p></div>
+            <div class="feature-item"><h3><i class="fas fa-clock"></i> Реальные битвы 1v1</h3><p>Сражайтесь с игроками со всего мира в реальном времени.</p></div>
+            <div class="feature-item"><h3><i class="fas fa-chess-king"></i> Клановые войны</h3><p>Объединяйтесь с кланом и поднимайтесь в рейтинге.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Каталог карт -->
+<section id="learn" class="container">
+    <h2 class="section-title"><i class="fas fa-book-open"></i> Каталог карт (обучение)</h2>
+    <div class="cards-grid">
+        <div class="card-item" onclick="alert('Рыцарь: танк, бьёт по одной цели.')"><i class="fas fa-shield-alt"></i><h4>Рыцарь</h4></div>
+        <div class="card-item" onclick="alert('Ведьма: призывает скелетов.')"><i class="fas fa-hat-wizard"></i><h4>Ведьма</h4></div>
+        <div class="card-item" onclick="alert('Дракон: летающий юнит с огнём.')"><i class="fas fa-dragon"></i><h4>Дракон</h4></div>
+        <div class="card-item" onclick="alert('Голем: мощный, распадается на големят.')"><i class="fas fa-mountain"></i><h4>Голем</h4></div>
+        <div class="card-item" onclick="alert('Принц: двойной урон при разгоне.')"><i class="fas fa-horse"></i><h4>Принц</h4></div>
+        <div class="card-item" onclick="alert('Мега рыцарь: прыгает и крушит.')"><i class="fas fa-chess-knight"></i><h4>Мега рыцарь</h4></div>
+    </div>
+</section>
+
+<!-- Тренеры (с запросом ID) -->
+<section id="coaches" class="container">
+    <h2 class="section-title"><i class="fas fa-user-tie"></i> Тренеры высшего уровня</h2>
+    <div class="coaches-grid">
+        <div class="coach-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%233d5e73' stroke='%23c9a455' stroke-width='4'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23fad564' font-family='Arial'%3E👑%3C/text%3E%3C/svg%3E" alt="тренер">
+            <h3>Макс "Король"</h3>
+            <p>7 лет опыта, топ-100 мира.</p>
+            <button class="boost-btn" onclick="requestBoost('Макс')">Хочу буст ⚡</button>
+        </div>
+        <div class="coach-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%239f7e4b' stroke='%23c9a455' stroke-width='4'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23fad564'%3E⚔️%3C/text%3E%3C/svg%3E" alt="тренер">
+            <h3>Анна "Ледяная"</h3>
+            <p>Чемпионка клановых войн.</p>
+            <button class="boost-btn" onclick="requestBoost('Анна')">Хочу буст 🔥</button>
+        </div>
+        <div class="coach-card">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%236d8c9c' stroke='%23c9a455' stroke-width='4'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='%23fad564'%3E🛡️%3C/text%3E%3C/svg%3E" alt="тренер">
+            <h3>Олег "Стена"</h3>
+            <p>Эксперт по защите.</p>
+            <button class="boost-btn" onclick="requestBoost('Олег')">Хочу буст 🛡️</button>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Магазин гемов (игровая валюта) -->
+<section id="gems" class="gems-shop">
+    <div class="container">
+        <h2 class="section-title" style="color:#ffd966;">💎 Игровая валюта — Гемы</h2>
+        <div class="gems-grid">
+            <div class="gem-item">
+                <div class="gem-icon"><i class="fas fa-gem"></i></div>
+                <div class="gem-amount">80 гемов</div>
+                <div class="gem-price">495₸</div>
+                <button class="buy-btn" onclick="buyGems('80 гемов', 495)">Купить</button>
+            </div>
+            <div class="gem-item">
+                <div class="gem-icon"><i class="fas fa-gem"></i><i class="fas fa-gem"></i></div>
+                <div class="gem-amount">500 гемов</div>
+                <div class="gem-price">2245₸</div>
+                <button class="buy-btn" onclick="buyGems('500 гемов', 2245)">Купить</button>
+            </div>
+            <div class="gem-item">
+                <div class="gem-icon"><i class="fas fa-gem"></i><i class="fas fa-gem"></i><i class="fas fa-gem"></i></div>
+                <div class="gem-amount">1200 гемов</div>
+                <div class="gem-price">4950₸</div>
+                <button class="buy-btn" onclick="buyGems('1200 гемов', 4950)">Купить</button>
+            </div>
+            <div class="gem-item">
+                <div class="gem-icon"><i class="fas fa-crown"></i></div>
+                <div class="gem-amount">6500 гемов</div>
+                <div class="gem-price">22450₸</div>
+                <button class="buy-btn" onclick="buyGems('6500 гемов', 22450)">Купить</button>
+            </div>
+        </div>
+        <p style="text-align:center; color:#bc9b6b; margin-top:30px;">
+            <i class="fas fa-lock"></i> Безопасная оплата картой Visa/MasterCard/Мир
+        </p>
+    </div>
+</section>
+
+<!-- Мини-игра -->
+<section id="minigame" class="minigame">
+    <div class="container">
+        <h2 class="section-title" style="margin-top:0;">🎲 Открой сундук</h2>
+        <div id="chest" class="chest" onclick="openChest()">
+            <span id="chestIcon">📦</span>
+        </div>
+        <div id="prizeMessage" class="prize-info">Нажми на сундук!</div>
+    </div>
+</section>
+
+<!-- Футер (только поддержка + российский номер) -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4><i class="fas fa-headset"></i> Поддержка</h4>
+                <a onclick="window.open('https://supercell.helpshift.com/hc/ru/clash-royale/', '_blank');">Официальный Help Center</a>
+                <a onclick="alert('Чат поддержки: ответ в течение часа');">Чат с поддержкой</a>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-phone-alt"></i> Наш номер</h4>
+                <div class="russian-phone" onclick="alert('Звоните +7 (495) 777-11-22');">+7 (747) 777-11-22</div>
+                <p style="color:#aa8c5f;">ежедневно 10:00-22:00</p>
+            </div>
+            <div class="footer-section">
+                <h4><i class="fas fa-crown"></i> Сообщество</h4>
+                <div class="social-icons" style="justify-content: flex-start; margin:0;">
+                    <div class="circle-icon" onclick="window.open('https://twitter.com/ClashRoyale', '_blank');"><i class="fab fa-twitter"></i></div>
+                    <div class="circle-icon" onclick="window.open('https://discord.com/invite/clashroyale', '_blank');"><i class="fab fa-discord"></i></div>
+                    <div class="circle-icon" onclick="window.open('https://www.youtube.com/@ClashRoyale', '_blank');"><i class="fab fa-youtube"></i></div>
+                </div>
+            </div>
+        </div>
+        <p class="copy">©️ Clash Royale 2025. Все права защищены.</p>
+    </div>
+</footer>
+
+<div id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'});">⬆️</div>
+
+<script>
+    // Функция для буста: запрос ID и подтверждение
+    function requestBoost(coachName) {
+        let playerId = prompt(`Введите ваш ID игрока (например, #ABC123) для тренера ${coachName}:`);
+        if (playerId && playerId.trim() !== '') {
+            alert(`Буст принят! Тренер ${coachName} скоро свяжется с ID: ${playerId}`);
+        } else if (playerId !== null) {
+            alert('ID не введён. Попробуйте снова.');
+        }
+    }
+
+    // Функция покупки гемов: реквизиты + ID + ожидание
+    function buyGems(amount, price) {
+        let playerId = prompt(`Введите ваш ID игрока для получения ${amount}:`);
+        if (!playerId || playerId.trim() === '') {
+            if (playerId !== null) alert('ID не введён. Оплата отменена.');
+            return;
+        }
+        let cardNumber = prompt('Введите номер карты (имитация):', '4111 1111 1111 1111');
+        if (!cardNumber) return;
+        let expiry = prompt('Срок действия (ММ/ГГ):', '12/25');
+        if (!expiry) return;
+        let cvv = prompt('CVV (три цифры):', '123');
+        if (!cvv) return;
+        
+        alert(`✅ Оплата ${amount} на сумму ${price}₽ выполнена.\nОжидайте, гемы скоро поступят на аккаунт ${playerId}.`);
+    }
+
+    // Мини-игра
+    function openChest() {
+        const chest = document.getElementById('chest');
+        const icon = document.getElementById('chestIcon');
+        const msg = document.getElementById('prizeMessage');
+        chest.classList.add('open');
+        icon.innerText = '✨';
+        const prizes = ['50 монет', '20 гемов', 'редкая карта', 'эпическая карта', 'легендарная карта!'];
+        const randomPrize = prizes[Math.floor(Math.random() * prizes.length)];
+        msg.innerHTML = `Ты получил: ${randomPrize} 👑`;
+        setTimeout(() => {
+            chest.classList.remove('open');
+            icon.innerText = '📦';
+        }, 800);
+    }
+
+    // adjustPadding (для contest-text)
+    function adjustPadding() {
+        const containerWidth = 1200;
+        const screenWidth = window.innerWidth;
+        let paddingInline = Math.max(25, (screenWidth - containerWidth) / 2 + 25);
+        const contestText = document.querySelector('.contest-text');
+        if(contestText) contestText.style.paddingLeft = paddingInline + 'px';
+    }
+    window.addEventListener('load', adjustPadding);
+    window.addEventListener('resize', adjustPadding);
+</script>
+
+<!-- Блок турнира (не мешает) -->
+<section class="contest-promo">
+    <div class="container" style="display: contents;">
+        <div class="contest-text" style="padding-left: calc((100vw - 1200px)/2 + 25px);">
+            <h3><i class="fas fa-trophy"></i> Королевский турнир: "Битва стихий"</h3>
+            <p>Примите участие в ежемесячном турнире. Победители получат эксклюзивные эмодзи и сундуки с легендарками!</p>
+            <a href="https://supercell.com/en/games/clashroyale/esports/" target="_blank" class="btn" style="padding: 12px 35px; margin-top: 20px;">Зарегистрироваться</a>
+        </div>
+        <div class="
